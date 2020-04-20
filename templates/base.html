@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
+    <!-- Sortable -->
+    <link rel="stylesheet" href="{% static 'css/sortable.css' %}">
+    <!-- JQuery UI-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+    <title>AMZ All Stars {% block title %}{% endblock %}</title>
+
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+                <!-- side-bar -->
+            {% include 'partials/_side-bar.html' %}
+                <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <!-- NavBar -->
+                {% include 'partials/_navbar.html' %}
+                <!-- Main content-->
+                <div class="container-fluid">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <!-- e.preventDefault(); -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+            $(this).html() ==="hide" ? $(this).html("menu") : $(this).html("hide");
+            $("#wrapper").toggleClass("toggled");
+                
+        });
+        </script>
+        <script>
+        $( function() {
+            $( "#sortable" ).sortable();
+            $( "#sortable" ).disableSelection();
+        });
+        </script>
+        <script>
+
+            $(document).ready(function() {
+                $("#sortable").sortable({
+                    connectWith: ".connectedSortable",
+
+                    update: function(event, ui) {
+                    var serial = $('#sortable').sortable('serialize');
+                    $.ajax({
+                        url: "{% url 'index' %}",
+                        type: "post",
+                        data: { 'content': serial, 'csrfmiddlewaretoken' : '{{ csrf_token }}' } 
+                    });
+                    },
+
+                }).disableSelection();
+
+                });
+        </script>
+    </body>
+</html>

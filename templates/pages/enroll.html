@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} | Add Item {% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+ <div class="container">
+  <form method="post">
+    {% csrf_token %}
+  
+    <div class="row">
+        <div class="col-3">
+          {{ form.brand_name|as_crispy_field }}
+        </div>
+        <div class="col-3">
+          {{ form.market_place|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+          {{ form.brand_manager|as_crispy_field }}
+      </div>
+      <div class="col-3">
+          {{ form.brand_associate|as_crispy_field }}
+      </div>
+      <div class="col-3">
+          {{ form.account_manager|as_crispy_field }}
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            {{ form.shopify_website_uname|as_crispy_field }}
+        </div>
+        <div class="col-3">
+            {{ form.shopify_website_password|as_crispy_field }}
+        </div>
+    </div> 
+
+
+
+      <input class="btn btn-lg btn-success" type="submit" name="submit">
+    </div>  
+  </form>
+</div>
+{% endblock %}

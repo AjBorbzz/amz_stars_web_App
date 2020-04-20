@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} | AMZ Reports{% endblock %}
+{% block content %}
+        <h1 class="mt-4">AMZ All Stars</h1>
+        <br>
+        <form method="get">
+          <div class="form-inline">
+           <div class="form-group mx-sm 3 mb-2">
+             {{ filter.form.market_place | as_crispy_field }} 
+           </div>
+          <div class="form-group mx-sm-3 mb-2">
+             <button type="submit" class="btn btn-success" name="color"> Display </button>
+          </div>
+         </div>
+              <table class="table table-striped">
+              <thead>
+                  <tr>
+                  <th scope="col">Brand Name</th>
+                  <th scope="col">Market Place</th>
+                  <th scope="col">Brand Manager</th>
+                  <th scope="col">Brand Associate</th>
+                  <th scope="col">Account Manager</th>
+
+
+
+                  </tr>
+              </thead>
+              <tbody id="sortable" class="connectedSortable">
+              {% for item in filter.qs %}
+                  <tr id="entry_{{ item.id }}" class="ui-state-default">
+                  <td>{{ item.brand_name }}</td>
+                  <td>{{ item.market_place }}</td>
+                  <td>{{ item.brand_manager }}</td>
+                  <td>{{ item.brand_associate }}</td>
+                  <td>{{ item.account_manager }}</td>
+  
+                  </tr>
+              {% endfor %}
+              </tbody>
+              </table>
+        </div>
+        </form>
+{% endblock %}
