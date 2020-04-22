@@ -1,45 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'page.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
-{% block title %} | AMZ Allstars{% endblock %}
+{% block title %} | Main Page {% endblock %}
+
 {% block content %}
-        <h1 class="mt-4">AMZ All Stars</h1>
-        <br>
-        <form method="get">
-          {% comment %} <div class="form-inline">
-           <div class="form-group mx-sm 3 mb-2">
-             {{ filter.form.market_place | as_crispy_field }} 
-           </div>
-          <div class="form-group mx-sm-3 mb-2">
-             <button type="submit" class="btn btn-success" name="color"> Display </button>
-          </div>
-         </div> {% endcomment %}
-              <table class="table table-striped">
-              <thead>
-                  <tr>
-                  <th scope="col">Brand Name</th>
-                  <th scope="col">Market Place</th>
-                  <th scope="col">Brand Manager</th>
-                  <th scope="col">Brand Associate</th>
-                  <th scope="col">Account Manager</th>
+  <main role="main" class="inner cover">
+        <h1 class="cover-heading">Cover your page.</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+        <a href="{% url 'register' %}" class="btn btn-lg btn-primary">Register</a>
+          <a href="{% url 'login' %}" class="btn btn-lg btn-secondary">Login</a>
+        </p>
+      </main>
 
-
-
-                  </tr>
-              </thead>
-              <tbody id="sortable" class="connectedSortable">
-              {% for item in filter.qs %}
-                  <tr id="entry_{{ item.id }}" class="ui-state-default">
-                  <td><a href={% url 'amz_brands/brand_details' %}>{{ item.brand_name }}</a></td>
-                  <td>{{ item.market_place }}</td>
-                  <td>{{ item.brand_manager }}</td>
-                  <td>{{ item.brand_associate }}</td>
-                  <td>{{ item.account_manager }}</td>
-  
-                  </tr>
-              {% endfor %}
-              </tbody>
-              </table>
-        </div>
-        </form>
 {% endblock %}

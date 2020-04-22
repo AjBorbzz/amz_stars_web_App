@@ -8,7 +8,7 @@ from amz_brands.resources import BrandResource
 from tablib import Dataset
 
 
-def index(request):
+def dashboard(request):
     latest_brand = Brand.objects.all()
     filter_brands = BrandFilter(request.GET, queryset=latest_brand)
 
@@ -24,7 +24,7 @@ def index(request):
         'filter': filter_brands,
     }
 
-    return render(request, 'pages/index.html', context)
+    return render(request, 'accounts/dashboard.html', context)
 
 
 def enroll(request):
@@ -34,7 +34,7 @@ def enroll(request):
         form = BrandForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('accounts/dashboard')
 
     context = {'form': form}
     return render(request, 'pages/enroll.html', context)

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Brand
+from amz_brands.models import Brand
 
 
 class BrandForm(ModelForm):

@@ -3,6 +3,9 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import AMZStar
+from amz_brands.models import Brand
+from pages.filter import BrandFilter
+from django.http import QueryDict
 
 
 def register(request):
@@ -17,7 +20,7 @@ def register(request):
         # Check if passwords match
         if password == password2:
             # check username if it already exists.
-            if User.objects.filter(username=userame).exists():
+            if User.objects.filter(username=username).exists():
                 messages.error(request, 'Username already exists')
                 return redirect('register')
             else:
@@ -58,6 +61,8 @@ def login(request):
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('login')
+    else:
+        return render(request, 'accounts/login.html')
 
 
 def logout(request):
@@ -70,7 +75,22 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+    latest_brand = Brand.objects.all()
+    filter_brands = BrandFilter(request.GET, queryset=latest_brand)
+
+    if request.method == 'POST':
+        entries = QueryDict(request.POST['content'])
+        for index, entry_id in enumerate(entries.getlist('entry[]')):
+            entry = Brand.objects.get(id=entry_id)
+            entry.order = index
+            entry.save()
+
+    context = {
+        'latest_brand': 'latest_brand',
+        'filter': filter_brands,
+    }
+
     context = {
 
     }
-    return render(request, 'accounts/dashboard.html')
+    return render(request, 'accounts/dashboard.html', context)

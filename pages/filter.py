@@ -1,5 +1,5 @@
 import django_filters
-from .models import Brand
+from amz_brands.models import Brand
 
 
 class BrandFilter(django_filters.FilterSet):

@@ -19,10 +19,11 @@
 
     </head>
     <body>
+
         <div class="d-flex" id="wrapper">
-                <!-- side-bar -->
+            <!-- side-bar -->
             {% include 'partials/_side-bar.html' %}
-                <!-- Page Content -->
+            <!-- Page Content -->
             <div id="page-content-wrapper">
                 <!-- NavBar -->
                 {% include 'partials/_navbar.html' %}
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </div>
+        
         <script src="{% static 'js/main.js' %}"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -62,7 +64,7 @@
                     update: function(event, ui) {
                     var serial = $('#sortable').sortable('serialize');
                     $.ajax({
-                        url: "{% url 'index' %}",
+                        url: "{% url 'dashboard' %}",
                         type: "post",
                         data: { 'content': serial, 'csrfmiddlewaretoken' : '{{ csrf_token }}' } 
                     });

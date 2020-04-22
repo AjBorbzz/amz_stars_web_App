@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'page.html' %}
 {% block title %} | Register Account {% endblock %}
 {% block content %}
   
-<section id="register" class="bg-light py-5">
+<section id="register" class="py-5">
         <div class="container">
           <div class="row">
             <div class="col-md-6 mx-auto">
               <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-dark text-white">
                   <h4>
                     <i class="fas fa-user-plus"></i> Register</h4>
                 </div>
@@ -42,7 +42,7 @@
                       <label for="password">Confirm Password</label>
                       <input type="password" name="password2" class="form-control" required>
                     </div>
-                    <input type="submit" value="Register" class="btn btn-secondary btn-block">
+                    <input type="submit" value="Register" class="btn btn-lg btn-primary btn-block">
                   </form>
                 </div>
               </div>
