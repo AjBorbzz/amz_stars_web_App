@@ -11,7 +11,7 @@
           {{ form.brand_name|as_crispy_field }}
         </div>
         <div class="col-3">
-          {{ form.market_place|as_crispy_field }}
+          {{ form.marketplace|as_crispy_field }}
         </div>
     </div>
     <div class="row">
@@ -25,20 +25,10 @@
           {{ form.account_manager|as_crispy_field }}
       </div>
     </div>
-
-    <div class="row">
-        <div class="col-3">
-            {{ form.shopify_website_uname|as_crispy_field }}
-        </div>
-        <div class="col-3">
-            {{ form.shopify_website_password|as_crispy_field }}
-        </div>
-    </div> 
-
-
-
       <input class="btn btn-lg btn-success" type="submit" name="submit">
-    </div>  
+    </div>
+    <br>
+
   </form>
 </div>
 {% endblock %}

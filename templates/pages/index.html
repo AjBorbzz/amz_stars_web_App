@@ -6,14 +6,14 @@
         <h1 class="mt-4">AMZ All Stars</h1>
         <br>
         <form method="get">
-          <div class="form-inline">
+          {% comment %} <div class="form-inline">
            <div class="form-group mx-sm 3 mb-2">
              {{ filter.form.market_place | as_crispy_field }} 
            </div>
           <div class="form-group mx-sm-3 mb-2">
              <button type="submit" class="btn btn-success" name="color"> Display </button>
           </div>
-         </div>
+         </div> {% endcomment %}
               <table class="table table-striped">
               <thead>
                   <tr>
@@ -30,7 +30,7 @@
               <tbody id="sortable" class="connectedSortable">
               {% for item in filter.qs %}
                   <tr id="entry_{{ item.id }}" class="ui-state-default">
-                  <td><a href={% url 'account_details' %}>{{ item.brand_name }}</a></td>
+                  <td><a href={% url 'amz_brands/brand_details' %}>{{ item.brand_name }}</a></td>
                   <td>{{ item.market_place }}</td>
                   <td>{{ item.brand_manager }}</td>
                   <td>{{ item.brand_associate }}</td>

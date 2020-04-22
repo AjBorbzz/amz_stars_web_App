@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'amz_products',
-    'import_export'
+    'import_export',
+    'pages',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'amzdb',
         'USER': 'postgres',
-        'PASSWORD': 'password123',
+        'PASSWORD': 'password',
         'HOST': 'localhost'
     }
 }
