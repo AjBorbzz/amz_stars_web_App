@@ -6,9 +6,11 @@ from .filter import BrandFilter
 from django.http import HttpResponse
 from amz_brands.resources import BrandResource
 from tablib import Dataset
+from django.contrib.auth.decorators import login_required
 
 
-def dashboard(request):
+@login_required(login_url='login')
+def index(request):
     latest_brand = Brand.objects.all()
     filter_brands = BrandFilter(request.GET, queryset=latest_brand)
 
@@ -24,9 +26,10 @@ def dashboard(request):
         'filter': filter_brands,
     }
 
-    return render(request, 'accounts/dashboard.html', context)
+    return render(request, 'pages/index.html', context)
 
 
+@login_required(login_url='login')
 def enroll(request):
     form = BrandForm()
     if request.method == 'POST':
@@ -34,12 +37,13 @@ def enroll(request):
         form = BrandForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('accounts/dashboard')
+            return redirect('index')
 
     context = {'form': form}
     return render(request, 'pages/enroll.html', context)
 
 
+@login_required(login_url='login')
 def reports(request):
     brands = Brand.objects.all()
     context = {
@@ -48,6 +52,7 @@ def reports(request):
     return render(request, 'pages/reports.html', context)
 
 
+@login_required(login_url='login')
 def export_file(request):
     brand_resource = BrandResource()
     dataset = brand_resource.export()
@@ -57,6 +62,7 @@ def export_file(request):
     return response
 
 
+@login_required(login_url='login')
 def upload_file(request):
     if request.method == 'POST':
         brand_resource = BrandResource()
@@ -73,6 +79,7 @@ def upload_file(request):
     return render(request, 'pages/upload_file.html')
 
 
+@login_required(login_url='login')
 def about(request):
     context = {
 

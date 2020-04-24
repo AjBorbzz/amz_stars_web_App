@@ -3,14 +3,6 @@ from .models import Brand
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
-def index(request):
-    brands = Brand.objects.all()
-    context = {
-        'brands': brands,
-    }
-    return render(request, 'pages/dashboard.html', context)
-
-
 def brand_details(request, brand_id):
     brand_details = get_object_or_404(Brand, pk=brand_id)
     context = {

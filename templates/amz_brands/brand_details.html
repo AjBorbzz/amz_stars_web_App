@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-{% block title %} | Bebe Earth {% endblock %}
+{% block title %} | {{brand_details.brand_name}} {% endblock %}
 {% block content %}
-    <main role="main">
+
+      <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Bebe Earth</h1>
+          <h1 class="display-3">{{brand_details.brand_name}}</h1>
           <p>For details and knowledge based documents <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
@@ -33,8 +34,7 @@
 
         <hr>
 
-      </div> <!-- /container -->
+      </div> 
 
     </main>
-
 {% endblock %}

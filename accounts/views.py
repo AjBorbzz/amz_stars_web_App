@@ -71,26 +71,3 @@ def logout(request):
         messages.success(request, 'You are now logged out')
         return redirect('index')
     return redirect('index')
-
-
-@login_required(login_url='login')
-def dashboard(request):
-    latest_brand = Brand.objects.all()
-    filter_brands = BrandFilter(request.GET, queryset=latest_brand)
-
-    if request.method == 'POST':
-        entries = QueryDict(request.POST['content'])
-        for index, entry_id in enumerate(entries.getlist('entry[]')):
-            entry = Brand.objects.get(id=entry_id)
-            entry.order = index
-            entry.save()
-
-    context = {
-        'latest_brand': 'latest_brand',
-        'filter': filter_brands,
-    }
-
-    context = {
-
-    }
-    return render(request, 'accounts/dashboard.html', context)
