@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'import_export',
     'pages',
     'accounts',
+    'amz_sfr_tracker',
 ]
 
 MIDDLEWARE = [

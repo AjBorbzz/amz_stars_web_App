@@ -57,7 +57,7 @@ def login(request):
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
             else:
-                return redirect('dashboard')
+                return redirect('index')
         else:
             messages.error(request, 'Invalid credentials')
             return redirect('login')
